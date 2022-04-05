@@ -4,10 +4,10 @@ const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 
 const app = express()
-const port = 3010
+const port = process.env.PORT
 
-const login = "alexeynikinitin@yandex.by"
-const password = "zhokqkgsflanpxas"
+const login = process.env.SMTP_LOGIN || "___"
+const password = process.env.SMTP_PASSWORD || "___"
 
 app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}))
