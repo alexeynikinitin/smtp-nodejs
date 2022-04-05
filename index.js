@@ -1,10 +1,11 @@
+const cors = require("cors");
 const express = require('express')
 const nodemailer = require("nodemailer");
-const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express()
 const port = 3010
+
 const login = "alexeynikinitin@yandex.by"
 const password = "zhokqkgsflanpxas"
 
@@ -17,17 +18,13 @@ let transporter = nodemailer.createTransport({
   port: 465,
   secure: true,
   auth: {
-    user: login, // generated ethereal user
-    pass: password, // generated ethereal password
+    user: login,
+    pass: password,
   },
   tls: {
     rejectUnauthorized: false
   }
 });
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 
 app.post('/send-message', async (req, res) => {
   const {name, email, message} = req.body
@@ -46,8 +43,6 @@ app.post('/send-message', async (req, res) => {
   } catch (e) {
     res.send({resultCode: 1})
   }
-
-
 })
 
 app.listen(port, () => {
